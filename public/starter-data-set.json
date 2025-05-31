@@ -1,0 +1,497 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Dune",
+      "author": ["Frank Herbert"],
+      "isbn": "978-0441172719",
+      "publicationYear": 1965,
+      "publisher": "Chilton Books",
+      "genreIds": [1, 5],
+      "totalCopies": 5,
+      "availableCopies": 2,
+      "imageUrl": "https://covers.openlibrary.org/b/isbn/9780441172719-M.jpg",
+      "description": "A science fiction masterpiece set in a distant future amidst a feudal interstellar empire where powerful noble houses control planetary fiefs."
+    },
+    {
+      "id": 2,
+      "title": "The Hobbit",
+      "author": ["J.R.R. Tolkien"],
+      "isbn": "978-0345339683",
+      "publicationYear": 1937,
+      "publisher": "George Allen & Unwin",
+      "genreIds": [2],
+      "totalCopies": 4,
+      "availableCopies": 1,
+      "imageUrl": "https://covers.openlibrary.org/b/isbn/9780345339683-M.jpg",
+      "description": "Bilbo Baggins, a hobbit, is asked to join a quest by Gandalf the wizard to reclaim treasure guarded by the dragon Smaug."
+    },
+    {
+      "id": 3,
+      "title": "To Kill a Mockingbird",
+      "author": ["Harper Lee"],
+      "isbn": "978-0446310789",
+      "publicationYear": 1960,
+      "publisher": "J. B. Lippincott & Co.",
+      "genreIds": [3],
+      "totalCopies": 3,
+      "availableCopies": 0,
+      "imageUrl": "https://covers.openlibrary.org/b/isbn/9780446310789-M.jpg",
+      "description": "A classic novel exploring racial injustice in the American South through the eyes of young Scout Finch."
+    },
+    {
+      "id": 4,
+      "title": "Murder on the Orient Express",
+      "author": ["Agatha Christie"],
+      "isbn": "978-0062073491",
+      "publicationYear": 1934,
+      "publisher": "Collins Crime Club",
+      "genreIds": [4],
+      "totalCopies": 2,
+      "availableCopies": 2,
+      "imageUrl": "https://covers.openlibrary.org/b/isbn/9780062073491-M.jpg",
+      "description": "Hercule Poirot investigates a murder on a luxurious train, where every passenger is a suspect."
+    },
+    {
+      "id": 5,
+      "title": "Sense and Sensibility",
+      "author": ["Jane Austen"],
+      "isbn": "978-0141439587",
+      "publicationYear": 1811,
+      "publisher": "T. Egerton",
+      "genreIds": [3],
+      "totalCopies": 3,
+      "availableCopies": 1,
+      "imageUrl": "https://covers.openlibrary.org/b/isbn/9780141439587-M.jpg",
+      "description": "A romantic novel of manners, exploring themes of love, class, and reputation in Georgian England through the story of Elinor and Marianne Dashwood."
+    },
+    {
+      "id": 6,
+      "title": "The Great Gatsby",
+      "author": ["F. Scott Fitzgerald"],
+      "isbn": "978-0743273565",
+      "publicationYear": 1925,
+      "publisher": "Charles Scribner's Sons",
+      "genreIds": [3, 6],
+      "totalCopies": 4,
+      "availableCopies": 3,
+      "imageUrl": "https://covers.openlibrary.org/b/isbn/9780743273565-M.jpg",
+      "description": "A classic novel exploring the Jazz Age in America, focusing on themes of decadence, idealism, social upheaval, and excess."
+    },
+    {
+      "id": 7,
+      "title": "Daughter of the Forest",
+      "author": ["Juliet Marillier"],
+      "isbn": "978-0765342410",
+      "publicationYear": 1999,
+      "publisher": "Tor Fantasy",
+      "genreIds": [2, 7],
+      "totalCopies": 3,
+      "availableCopies": 1,
+      "imageUrl": "https://covers.openlibrary.org/b/isbn/9780765342410-M.jpg",
+      "description": "A retelling of the Six Swans fairy tale set in ancient Ireland, blending history, mythology, and romance."
+    },
+    {
+      "id": 8,
+      "title": "The Silent Patient",
+      "author": ["Alex Michaelides"],
+      "isbn": "978-1250301697",
+      "publicationYear": 2019,
+      "publisher": "Celadon Books",
+      "genreIds": [4, 8],
+      "totalCopies": 5,
+      "availableCopies": 5,
+      "imageUrl": "https://covers.openlibrary.org/b/isbn/9781250301697-M.jpg",
+      "description": "A thrilling psychological suspense novel about a famous painter who murders her husband and the psychotherapist obsessed with uncovering why."
+    },
+    {
+      "id": 9,
+      "title": "Sapiens: A Brief History of Humankind",
+      "author": ["Yuval Noah Harari"],
+      "isbn": "978-0062316097",
+      "publicationYear": 2011,
+      "publisher": "Harper",
+      "genreIds": [9],
+      "totalCopies": 2,
+      "availableCopies": 1,
+      "imageUrl": "https://covers.openlibrary.org/b/isbn/9780062316097-M.jpg",
+      "description": "A bestselling non-fiction book that surveys the history of humankind from the Stone Age to the twenty-first century."
+    },
+    {
+      "id": 10,
+      "title": "Project Hail Mary",
+      "author": ["Andy Weir"],
+      "isbn": "978-0593135204",
+      "publicationYear": 2021,
+      "publisher": "Ballantine Books",
+      "genreIds": [1],
+      "totalCopies": 6,
+      "availableCopies": 6,
+      "imageUrl": "https://covers.openlibrary.org/b/isbn/9780593135204-M.jpg",
+      "description": "An astronaut wakes up on a space mission with no memory of who he is or how he got there, tasked with saving humanity."
+    },
+    {
+      "id": 11,
+      "title": "The Alchemist",
+      "author": ["Paulo Coelho"],
+      "isbn": "978-0061122415",
+      "publicationYear": 1988,
+      "publisher": "HarperCollins",
+      "genreIds": [10],
+      "totalCopies": 4,
+      "availableCopies": 2,
+      "imageUrl": "https://covers.openlibrary.org/b/isbn/9780061122415-M.jpg",
+      "description": "A philosophical novel about a young shepherd who journeys from Spain to the Egyptian desert in search of a hidden treasure."
+    },
+    {
+      "id": 12,
+      "title": "Educated",
+      "author": ["Tara Westover"],
+      "isbn": "978-0399590504",
+      "publicationYear": 2018,
+      "publisher": "Random House",
+      "genreIds": [9],
+      "totalCopies": 3,
+      "availableCopies": 3,
+      "imageUrl": "https://covers.openlibrary.org/b/isbn/9780399590504-M.jpg",
+      "description": "A memoir about a young woman who, despite growing up in a strict fundamentalist home in rural Idaho, pursues education and ultimately earns a PhD from Cambridge University."
+    },
+    {
+      "id": 13,
+      "title": "Circe",
+      "author": ["Madeline Miller"],
+      "isbn": "978-0316556347",
+      "publicationYear": 2018,
+      "publisher": "Little, Brown and Company",
+      "genreIds": [2, 7],
+      "totalCopies": 5,
+      "availableCopies": 4,
+      "imageUrl": "https://covers.openlibrary.org/b/isbn/9780316556347-M.jpg",
+      "description": "A novel that reimagines the life of the goddess Circe from Greek mythology, focusing on her exile and journey of self-discovery."
+    },
+    {
+      "id": 14,
+      "title": "Where the Crawdads Sing",
+      "author": ["Delia Owens"],
+      "isbn": "978-0735219100",
+      "publicationYear": 2018,
+      "publisher": "G.P. Putnam's Sons",
+      "genreIds": [4, 3],
+      "totalCopies": 6,
+      "availableCopies": 5,
+      "imageUrl": "https://covers.openlibrary.org/b/isbn/9780735219100-M.jpg",
+      "description": "A story combining a coming-of-age tale with a murder mystery, set in the marshes of North Carolina."
+    },
+    {
+      "id": 15,
+      "title": "The Guest List",
+      "author": ["Lucy Fokley"],
+      "isbn": "978-0062868930",
+      "publicationYear": 2020,
+      "publisher": "William Morrow",
+      "genreIds": [4, 8],
+      "totalCopies": 4,
+      "availableCopies": 4,
+      "imageUrl": "https://covers.openlibrary.org/b/isbn/9780062868930-M.jpg",
+      "description": "A suspenseful thriller about a wedding on a remote island where a guest is found dead and everyone is a suspect."
+    }
+  ],
+  "patrons": [
+    {
+      "id": 101,
+      "name": "Sarah Miller",
+      "libraryCardNumber": "SM1234",
+      "email": "sarah.m@example.com",
+      "phone": "555-222-3333",
+      "address": {
+        "street": "789 Pine Lane",
+        "city": "Riverdale",
+        "state": "NY",
+        "zip": "10471"
+      }
+    },
+    {
+      "id": 102,
+      "name": "David Chen",
+      "libraryCardNumber": "DC5678",
+      "email": "david.c@example.com",
+      "phone": "555-444-5555",
+      "address": {
+        "street": "101 Elm Street",
+        "city": "Fairview",
+        "state": "CA",
+        "zip": "90210"
+      }
+    },
+    {
+      "id": 103,
+      "name": "Emily White",
+      "libraryCardNumber": "EW9012",
+      "email": "emily.w@example.com",
+      "phone": "555-666-7777",
+      "address": {
+        "street": "202 Birch Road",
+        "city": "Greenfield",
+        "state": "TX",
+        "zip": "73301"
+      }
+    },
+    {
+      "id": 104,
+      "name": "Michael Davis",
+      "libraryCardNumber": "MD3456",
+      "email": "michael.d@example.com",
+      "phone": "555-888-9999",
+      "address": {
+        "street": "303 Cedar Drive",
+        "city": "Centerville",
+        "state": "OH",
+        "zip": "45459"
+      }
+    },
+    {
+      "id": 105,
+      "name": "Jessica Lee",
+      "libraryCardNumber": "JL7890",
+      "email": "jessica.l@example.com",
+      "phone": "555-111-2222",
+      "address": {
+        "street": "404 Poplar Street",
+        "city": "Lakewood",
+        "state": "CO",
+        "zip": "80214"
+      }
+    },
+    {
+      "id": 106,
+      "name": "Chris Rodriguez",
+      "libraryCardNumber": "CR4321",
+      "email": "chris.r@example.com",
+      "phone": "555-777-8888",
+      "address": {
+        "street": "505 Main Street",
+        "city": "Springfield",
+        "state": "IL",
+        "zip": "62704"
+      }
+    },
+    {
+      "id": 107,
+      "name": "Laura Taylor",
+      "libraryCardNumber": "LT6543",
+      "email": "laura.t@example.com",
+      "phone": "555-999-0000",
+      "address": {
+        "street": "606 Summit Ave",
+        "city": "Pleasantville",
+        "state": "WA",
+        "zip": "98101"
+      }
+    }
+  ],
+  "loans": [
+    {
+      "id": 1001,
+      "bookId": 1,
+      "patronId": 101,
+      "borrowDate": "2025-05-20",
+      "dueDate": "2025-06-03",
+      "returnDate": null,
+      "status": "on-loan"
+    },
+    {
+      "id": 1002,
+      "bookId": 2,
+      "patronId": 102,
+      "borrowDate": "2025-05-15",
+      "dueDate": "2025-05-29",
+      "returnDate": null,
+      "status": "on-loan"
+    },
+    {
+      "id": 1003,
+      "bookId": 3,
+      "patronId": 103,
+      "borrowDate": "2025-05-10",
+      "dueDate": "2025-05-24",
+      "returnDate": null,
+      "status": "on-loan"
+    },
+    {
+      "id": 1004,
+      "bookId": 1,
+      "patronId": 102,
+      "borrowDate": "2025-05-01",
+      "dueDate": "2025-05-15",
+      "returnDate": "2025-05-14",
+      "status": "returned"
+    },
+    {
+      "id": 1005,
+      "bookId": 3,
+      "patronId": 101,
+      "borrowDate": "2025-04-25",
+      "dueDate": "2025-05-09",
+      "returnDate": null,
+      "status": "overdue"
+    },
+    {
+      "id": 1006,
+      "bookId": 5,
+      "patronId": 103,
+      "borrowDate": "2025-05-22",
+      "dueDate": "2025-06-05",
+      "returnDate": null,
+      "status": "on-loan"
+    },
+    {
+      "id": 1007,
+      "bookId": 2,
+      "patronId": 101,
+      "borrowDate": "2025-04-01",
+      "dueDate": "2025-04-15",
+      "returnDate": "2025-04-12",
+      "status": "returned"
+    },
+    {
+      "id": 1008,
+      "bookId": 1,
+      "patronId": 103,
+      "borrowDate": "2025-04-10",
+      "dueDate": "2025-04-24",
+      "returnDate": "2025-04-20",
+      "status": "returned"
+    },
+    {
+      "id": 1009,
+      "bookId": 6,
+      "patronId": 104,
+      "borrowDate": "2025-05-25",
+      "dueDate": "2025-06-08",
+      "returnDate": null,
+      "status": "on-loan"
+    },
+    {
+      "id": 1010,
+      "bookId": 7,
+      "patronId": 105,
+      "borrowDate": "2025-05-18",
+      "dueDate": "2025-06-01",
+      "returnDate": null,
+      "status": "on-loan"
+    },
+    {
+      "id": 1011,
+      "bookId": 8,
+      "patronId": 101,
+      "borrowDate": "2025-05-12",
+      "dueDate": "2025-05-26",
+      "returnDate": null,
+      "status": "on-loan"
+    },
+    {
+      "id": 1012,
+      "bookId": 9,
+      "patronId": 104,
+      "borrowDate": "2025-05-05",
+      "dueDate": "2025-05-19",
+      "returnDate": null,
+      "status": "on-loan"
+    },
+    {
+      "id": 1013,
+      "bookId": 10,
+      "patronId": 105,
+      "borrowDate": "2025-05-28",
+      "dueDate": "2025-06-11",
+      "returnDate": null,
+      "status": "on-loan"
+    },
+    {
+      "id": 1014,
+      "bookId": 6,
+      "patronId": 102,
+      "borrowDate": "2025-04-15",
+      "dueDate": "2025-04-29",
+      "returnDate": "2025-04-28",
+      "status": "returned"
+    },
+    {
+      "id": 1015,
+      "bookId": 7,
+      "patronId": 103,
+      "borrowDate": "2025-04-20",
+      "dueDate": "2025-05-04",
+      "returnDate": "2025-05-01",
+      "status": "returned"
+    },
+    {
+      "id": 1016,
+      "bookId": 9,
+      "patronId": 101,
+      "borrowDate": "2025-03-20",
+      "dueDate": "2025-04-03",
+      "returnDate": null,
+      "status": "overdue"
+    },
+    {
+      "id": 1017,
+      "bookId": 11,
+      "patronId": 106,
+      "borrowDate": "2025-05-29",
+      "dueDate": "2025-06-12",
+      "returnDate": null,
+      "status": "on-loan"
+    },
+    {
+      "id": 1018,
+      "bookId": 12,
+      "patronId": 107,
+      "borrowDate": "2025-05-10",
+      "dueDate": "2025-05-24",
+      "returnDate": "2025-05-20",
+      "status": "returned"
+    },
+    {
+      "id": 1019,
+      "bookId": 13,
+      "patronId": 104,
+      "borrowDate": "2025-05-01",
+      "dueDate": "2025-05-15",
+      "returnDate": null,
+      "status": "on-loan"
+    },
+    {
+      "id": 1020,
+      "bookId": 14,
+      "patronId": 105,
+      "borrowDate": "2025-04-22",
+      "dueDate": "2025-05-06",
+      "returnDate": null,
+      "status": "on-loan"
+    },
+    {
+      "id": 1021,
+      "bookId": 15,
+      "patronId": 106,
+      "borrowDate": "2025-05-03",
+      "dueDate": "2025-05-17",
+      "returnDate": null,
+      "status": "on-loan"
+    }
+  ],
+  "genres": [
+    { "id": 1, "name": "Science Fiction" },
+    { "id": 2, "name": "Fantasy" },
+    { "id": 3, "name": "Classic" },
+    { "id": 4, "name": "Mystery" },
+    { "id": 5, "name": "Epic" },
+    { "id": 6, "name": "Historical Fiction" },
+    { "id": 7, "name": "Romance" },
+    { "id": 8, "name": "Thriller" },
+    { "id": 9, "name": "Non-Fiction" },
+    { "id": 10, "name": "Philosophy" },
+    { "id": 11, "name": "Memoir" },
+    { "id": 12, "name": "Adventure" }
+  ]
+}
