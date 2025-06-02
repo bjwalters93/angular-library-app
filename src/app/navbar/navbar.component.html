@@ -1,0 +1,18 @@
+<p-menubar [model]="items">
+  <ng-template #item let-item>
+    <ng-container>
+      <a [routerLink]="item.route" class="p-menubar-item-link">
+        <span [class]="item.icon"></span>
+        <span class="ml-2">{{ item.label }}</span>
+      </a>
+    </ng-container>
+  </ng-template>
+  <ng-template #end>
+    <p-button
+      variant="outlined"
+      severity="contrast"
+      [icon]="displayIcon()"
+      (click)="toggleDisplayMode()"
+    />
+  </ng-template>
+</p-menubar>
