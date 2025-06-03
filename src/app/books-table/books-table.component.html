@@ -1,0 +1,37 @@
+<p-table [value]="books" [tableStyle]="{ 'min-width': '60rem' }">
+  <ng-template #caption>
+    <div class="flex items-center justify-between">
+      <span class="text-xl font-bold">Products</span>
+      <p-button icon="pi pi-refresh" rounded raised />
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <th>Title</th>
+      <th>Image</th>
+      <th>Author</th>
+      <th>Id</th>
+      <th>Isbn</th>
+      <th>Available Copies</th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-book>
+    <tr>
+      <td>{{ book.title }}</td>
+      <td>
+        <img [src]="book.imageUrl" [alt]="book.title" class="w-24 rounded" />
+      </td>
+      <td>{{ book.author }}</td>
+      <td>{{ book.id }}</td>
+      <td>
+        {{ book.isbn }}
+      </td>
+      <td>
+        {{ book.availableCopies }}
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template #footer>
+    In total there are {{ books ? books.length : 0 }} products.
+  </ng-template>
+</p-table>

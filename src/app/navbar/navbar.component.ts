@@ -41,17 +41,50 @@ export class NavbarComponent implements OnInit {
       {
         label: 'Books',
         icon: 'pi pi-book',
-        route: '/books',
+        items: [
+          {
+            label: 'Book List',
+            icon: 'pi pi-list',
+            route: '/books',
+          },
+          {
+            label: 'New Book',
+            icon: 'pi pi-plus',
+            route: '/books/new',
+          },
+        ],
       },
       {
         label: 'Patrons',
         icon: 'pi pi-users',
-        route: '/patrons',
+        items: [
+          {
+            label: 'Patron List',
+            icon: 'pi pi-list',
+            route: '/patrons',
+          },
+          {
+            label: 'New Patron',
+            icon: 'pi pi-user-plus',
+            route: '/patrons/new',
+          },
+        ],
       },
       {
         label: 'Loans',
         icon: 'pi pi-receipt',
-        route: '/loans',
+        items: [
+          {
+            label: 'Loans List',
+            icon: 'pi pi-list',
+            route: '/loans',
+          },
+          {
+            label: 'New Loan',
+            icon: 'pi pi-plus',
+            route: '/loans/new',
+          },
+        ],
       },
     ];
   }

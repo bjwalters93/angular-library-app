@@ -42,6 +42,7 @@ This system would allow librarians (or users in a simplified version) to manage 
 - `/patrons`: List of all library patrons.
 - `/patrons/new`: Form to add a new patron (**POST**).
 - `/patrons/:id`: View a specific patron's details and borrowing history (**GET** using `id` as a **route parameter**).
+- `/patrons/:id/edit`: Edit a specific book's details (**PUT/PATCH** using `id` as a **route parameter**).
 - `/loans`: List of all current loans.
 - `/loans/new`: Form to record a new loan.
 - `/loans/overdue`: List of overdue books/loans.
