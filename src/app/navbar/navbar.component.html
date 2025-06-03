@@ -1,26 +1,28 @@
-<p-menubar [model]="items">
-  <ng-template #item let-item>
-    <ng-container *ngIf="item.route; else urlRef">
-      <a [routerLink]="item.route" class="p-menubar-item-link">
-        <span [class]="item.icon"></span>
-        <span class="ml-2">{{ item.label }}</span>
-      </a>
-    </ng-container>
-    <ng-template #urlRef>
-      <a class="p-menubar-item-link">
-        <span [class]="item.icon"></span>
-        <span class="ml-2">{{ item.label }}</span>
-        <span class="pi pi-fw pi-angle-down ml-2"></span>
-      </a>
+<div class="p-2">
+  <p-menubar [model]="items">
+    <ng-template #item let-item>
+      <ng-container *ngIf="item.route; else urlRef">
+        <a [routerLink]="item.route" class="p-menubar-item-link">
+          <span [class]="item.icon"></span>
+          <span class="ml-2">{{ item.label }}</span>
+        </a>
+      </ng-container>
+      <ng-template #urlRef>
+        <a class="p-menubar-item-link">
+          <span [class]="item.icon"></span>
+          <span class="ml-2">{{ item.label }}</span>
+          <span class="pi pi-fw pi-angle-down ml-2"></span>
+        </a>
+      </ng-template>
     </ng-template>
-  </ng-template>
-  <ng-template #end>
-    <p-button
-      variant="outlined"
-      severity="secondary"
-      size="small"
-      [icon]="displayIcon()"
-      (click)="toggleDisplayMode()"
-    />
-  </ng-template>
-</p-menubar>
+    <ng-template #end>
+      <p-button
+        variant="outlined"
+        severity="primary"
+        size="small"
+        [icon]="displayIcon()"
+        (click)="toggleDisplayMode()"
+      />
+    </ng-template>
+  </p-menubar>
+</div>
