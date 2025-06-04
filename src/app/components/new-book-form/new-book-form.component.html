@@ -1,30 +1,121 @@
-<form [formGroup]="newBookForm" class="flex flex-col items-start gap-4">
+<form
+  (ngSubmit)="onSubmit()"
+  [formGroup]="newBookForm"
+  class="flex flex-col items-center gap-4"
+>
   <div class="flex flex-col gap-2">
-    <label class="block font-bold mb-2" for="title">Title</label>
-    <input id="title" type="text" pInputText formControlName="title" />
-  </div>
-
-  <input type="text" pInputText formControlName="author" />
-
-  <input type="text" pInputText formControlName="isbn" />
-
-  <div class="flex flex-col gap-2">
-    <label class="font-bold mb-2" for="publicationYear">Publication Year</label>
-    <p-inputnumber
-      inputId="publicationYear"
-      formControlName="publicationYear"
+    <label for="title">Title</label>
+    <input
+      id="title"
+      type="text"
+      pInputText
+      pSize="small"
+      formControlName="title"
+      variant="filled"
     />
   </div>
 
-  <input type="text" pInputText formControlName="publisher" />
+  <div class="flex flex-col gap-2">
+    <label for="author">Author</label>
+    <input
+      id="author"
+      type="text"
+      pInputText
+      pSize="small"
+      formControlName="author"
+      variant="filled"
+    />
+  </div>
 
-  <p-inputnumber inputId="integeronly" formControlName="genreIds" />
+  <div class="flex flex-col gap-2">
+    <label for="isbn">isbn</label>
+    <input
+      id="isbn"
+      type="text"
+      pInputText
+      pSize="small"
+      formControlName="isbn"
+      variant="filled"
+    />
+  </div>
 
-  <p-inputnumber inputId="integeronly" formControlName="totalCopies" />
+  <div class="flex flex-col gap-2">
+    <label for="publicationYear">Publication Year</label>
+    <p-inputnumber
+      inputId="publicationYear"
+      formControlName="publicationYear"
+      size="small"
+      variant="filled"
+    />
+  </div>
 
-  <p-inputnumber inputId="integeronly" formControlName="availableCopies" />
+  <div class="flex flex-col gap-2">
+    <label for="publisher">Publisher</label>
+    <input
+      id="publisher"
+      type="text"
+      pInputText
+      pSize="small"
+      formControlName="publisher"
+      variant="filled"
+    />
+  </div>
 
-  <input type="text" pInputText formControlName="imageUrl" />
+  <div class="flex flex-col gap-2">
+    <label for="genreIds">Genre Id's</label>
+    <p-listbox
+      [options]="genres"
+      formControlName="genreIds"
+      [multiple]="true"
+      [checkbox]="true"
+      optionLabel="name"
+      optionValue="id"
+      showToggleAll="false"
+      class="w-full md:w-56"
+    />
+  </div>
 
-  <input type="text" pInputText formControlName="description" />
+  <div class="flex flex-col gap-2">
+    <label for="totalCopies">Total Copies</label>
+    <p-inputnumber
+      inputId="totalCopies"
+      formControlName="totalCopies"
+      size="small"
+      variant="filled"
+    />
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label for="availableCopies">Available Copies</label>
+    <p-inputnumber
+      inputId="availableCopies"
+      formControlName="availableCopies"
+      size="small"
+      variant="filled"
+    />
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label for="imageUrl">Image URL</label>
+    <input
+      id="imageUrl"
+      type="text"
+      pInputText
+      pSize="small"
+      formControlName="imageUrl"
+      variant="filled"
+    />
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label for="description">Description</label>
+    <input
+      type="description"
+      pInputText
+      pSize="small"
+      formControlName="description"
+      variant="filled"
+    />
+  </div>
+  <p-button label="Submit" type="submit" />
 </form>

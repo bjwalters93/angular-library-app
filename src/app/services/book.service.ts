@@ -2,20 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
-
-export interface Book {
-  id?: number;
-  title: string;
-  author: string[]; // An array of strings, as there can be multiple authors
-  isbn: string;
-  publicationYear: number;
-  publisher: string;
-  genreIds: number[]; // An array of numbers, assuming genre IDs are numeric
-  totalCopies: number;
-  availableCopies: number;
-  imageUrl?: string; // Optional property, as it might not always be present
-  description?: string; // Optional property
-}
+import { Book } from '../interfaces/book.interface';
 
 @Injectable({
   providedIn: 'root', // This makes the service a singleton and available throughout the app.
