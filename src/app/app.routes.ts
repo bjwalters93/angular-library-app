@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
-import { BooksComponent } from './books/books.component';
-import { PatronsComponent } from './patrons/patrons.component';
-import { LoansComponent } from './loans/loans.component';
-import { BooksSearchComponent } from './books-search/books-search.component';
-import { PatronsSearchComponent } from './patrons-search/patrons-search.component';
-import { NewBookComponent } from './new-book/new-book.component';
-import { NewPatronComponent } from './new-patron/new-patron.component';
-import { NewLoanComponent } from './new-loan/new-loan.component';
+import { BooksComponent } from './components/books/books.component';
+import { PatronsComponent } from './components/patrons/patrons.component';
+import { LoansComponent } from './components/loans/loans.component';
+import { BooksSearchComponent } from './components/books-search/books-search.component';
+import { PatronsSearchComponent } from './components/patrons-search/patrons-search.component';
+import { NewBookComponent } from './components/new-book/new-book.component';
+import { NewPatronComponent } from './components/new-patron/new-patron.component';
+import { NewLoanComponent } from './components/new-loan/new-loan.component';
 
 export const routes: Routes = [
   // Books Collection

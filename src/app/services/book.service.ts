@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry, map } from 'rxjs/operators';
 
 export interface Book {
-  id: number;
+  id?: number;
   title: string;
   author: string[]; // An array of strings, as there can be multiple authors
   isbn: string;
