@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { Book } from '../../interfaces/book.interface';
+import { FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { BookForm } from '../../interfaces/book-form.interface';
 import { Genre } from '../../interfaces/genre.interface';
-import { inject } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { ListboxModule } from 'primeng/listbox';
+import { InputGroup } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { FieldsetModule } from 'primeng/fieldset';
+import { CommonModule } from '@angular/common';
+import { TagModule } from 'primeng/tag';
 
 @Component({
   selector: 'app-new-book-form',
@@ -18,29 +23,32 @@ import { ListboxModule } from 'primeng/listbox';
     ButtonModule,
     CardModule,
     ListboxModule,
+    InputGroup,
+    InputGroupAddonModule,
+    FieldsetModule,
+    CommonModule,
+    TagModule,
   ],
   templateUrl: './new-book-form.component.html',
   styleUrl: './new-book-form.component.css',
 })
 export class NewBookFormComponent {
-  private fb = inject(FormBuilder);
-
-  newBookForm = this.fb.group<Book>({
-    title: '',
-    author: [],
-    isbn: '',
-    publicationYear: 0,
-    publisher: '',
-    genreIds: [],
-    totalCopies: 0,
-    availableCopies: 0,
-    imageUrl: '',
-    description: '',
-  });
-
+  newBookForm!: FormGroup;
   genres!: Genre[];
 
   ngOnInit() {
+    this.newBookForm = new FormGroup<BookForm>({
+      title: new FormControl(),
+      authors: new FormArray([new FormControl()]),
+      isbn: new FormControl(),
+      publicationYear: new FormControl(),
+      publisher: new FormControl(),
+      genreIds: new FormControl(),
+      totalCopies: new FormControl(),
+      availableCopies: new FormControl(),
+      imageUrl: new FormControl(),
+      description: new FormControl(),
+    });
     this.genres = [
       { id: 1, name: 'Science Fiction' },
       { id: 2, name: 'Fantasy' },
@@ -55,6 +63,18 @@ export class NewBookFormComponent {
       { id: 11, name: 'Memoir' },
       { id: 12, name: 'Adventure' },
     ];
+  }
+
+  get authors() {
+    return this.newBookForm.get('authors') as FormArray;
+  }
+
+  addAuthor() {
+    this.authors.push(new FormControl());
+  }
+
+  removeAuthor(index: number): void {
+    this.authors.removeAt(index);
   }
 
   onSubmit(): void {

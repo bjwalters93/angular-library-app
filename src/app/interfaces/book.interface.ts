@@ -1,7 +1,7 @@
 export interface Book {
   id?: number;
   title: string;
-  author: string[]; // An array of strings, as there can be multiple authors
+  authors: string[]; // An array of strings, as there can be multiple authors
   isbn: string;
   publicationYear: number;
   publisher: string;

@@ -1,121 +1,323 @@
-<form
-  (ngSubmit)="onSubmit()"
-  [formGroup]="newBookForm"
-  class="flex flex-col items-center gap-4"
->
-  <div class="flex flex-col gap-2">
-    <label for="title">Title</label>
-    <input
-      id="title"
-      type="text"
-      pInputText
-      pSize="small"
-      formControlName="title"
-      variant="filled"
-    />
-  </div>
+<div class="w-full max-w-[800px] m-auto">
+  <p-card header="Add New Book">
+    <form
+      (ngSubmit)="onSubmit()"
+      [formGroup]="newBookForm"
+      class="flex flex-col items-center gap-4"
+    >
+      <div class="w-full">
+        <p-fieldset legend="Basic Information">
+          <div class="flex justify-evenly">
+            <div class="flex flex-col gap-2 items-start">
+              <p-tag value="Title" />
+              <input
+                id="title"
+                type="text"
+                pInputText
+                formControlName="title"
+              />
+            </div>
+            <div class="flex flex-col gap-2 items-start">
+              <label for="isbn"><p-tag value="Isbn" /></label>
+              <input id="isbn" type="text" pInputText formControlName="isbn" />
+            </div>
+          </div>
+        </p-fieldset>
+      </div>
+      <div class="w-full">
+        <p-fieldset legend="Author(s)">
+          <div class="flex flex-col gap-2" formArrayName="authors">
+            <label>Author(s)</label>
+            @for (author of authors.controls; track $index; let i = $index) {
+            <div>
+              <p-inputgroup>
+                <input
+                  id="author-{{ i }}"
+                  type="text"
+                  pInputText
+                  [formControlName]="i"
+                  placeholder="Author {{ i + 1 }}"
+                />
+                <p-inputgroup-addon>
+                  <p-button
+                    type="button"
+                    (click)="removeAuthor(i)"
+                    icon="pi pi-times"
+                    variant="text"
+                    severity="secondary"
+                  />
+                </p-inputgroup-addon>
+              </p-inputgroup>
+            </div>
+            }
+            <p-button type="button" (click)="addAuthor()" label="Add Author" />
+          </div>
+        </p-fieldset>
+      </div>
+      <div class="w-full">
+        <p-fieldset legend="Publication Details">
+          <div class="flex flex-col gap-2">
+            <label for="publisher">Publisher</label>
+            <input
+              id="publisher"
+              type="text"
+              pInputText
+              formControlName="publisher"
+            />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label for="publicationYear">Publication Year</label>
+            <p-inputnumber
+              inputId="publicationYear"
+              formControlName="publicationYear"
+            />
+          </div>
+          <div class="flex flex-col gap-2">
+            <label for="imageUrl">Image URL</label>
+            <input
+              id="imageUrl"
+              type="text"
+              pInputText
+              formControlName="imageUrl"
+            />
+          </div>
+        </p-fieldset>
+      </div>
+      <div class="w-full">
+        <p-fieldset legend="Inventory & Genres">
+          <div class="flex flex-col gap-2">
+            <label for="genreIds">Genre Id's</label>
+            <p-listbox
+              [options]="genres"
+              formControlName="genreIds"
+              [multiple]="true"
+              [checkbox]="true"
+              optionLabel="name"
+              optionValue="id"
+              showToggleAll="false"
+              class="w-full md:w-56"
+            />
+          </div>
 
-  <div class="flex flex-col gap-2">
-    <label for="author">Author</label>
-    <input
-      id="author"
-      type="text"
-      pInputText
-      pSize="small"
-      formControlName="author"
-      variant="filled"
-    />
-  </div>
+          <div class="flex flex-col gap-2">
+            <label for="totalCopies">Total Copies</label>
+            <p-inputnumber
+              inputId="totalCopies"
+              formControlName="totalCopies"
+            />
+          </div>
 
-  <div class="flex flex-col gap-2">
-    <label for="isbn">isbn</label>
-    <input
-      id="isbn"
-      type="text"
-      pInputText
-      pSize="small"
-      formControlName="isbn"
-      variant="filled"
-    />
-  </div>
+          <div class="flex flex-col gap-2">
+            <label for="availableCopies">Available Copies</label>
+            <p-inputnumber
+              inputId="availableCopies"
+              formControlName="availableCopies"
+            />
+          </div>
 
-  <div class="flex flex-col gap-2">
-    <label for="publicationYear">Publication Year</label>
-    <p-inputnumber
-      inputId="publicationYear"
-      formControlName="publicationYear"
-      size="small"
-      variant="filled"
-    />
-  </div>
+          <div class="flex flex-col gap-2">
+            <label for="description">Description</label>
+            <input
+              type="description"
+              pInputText
+              formControlName="description"
+            />
+          </div>
+        </p-fieldset>
+      </div>
+      <div class="flex justify-content-end gap-2 mt-4">
+        <p-button
+          label="Clear"
+          type="button"
+          severity="secondary"
+          icon="pi pi-refresh"
+          (click)="newBookForm.reset()"
+        ></p-button>
+        <p-button label="Save Book" type="submit" icon="pi pi-check" />
+      </div>
+    </form>
+  </p-card>
+</div>
 
-  <div class="flex flex-col gap-2">
-    <label for="publisher">Publisher</label>
-    <input
-      id="publisher"
-      type="text"
-      pInputText
-      pSize="small"
-      formControlName="publisher"
-      variant="filled"
-    />
-  </div>
+<!-- <div class="p-4">
+    <p-card
+    header="Add New Book"
+    [style]="{ width: '100%', maxWidth: '800px', margin: 'auto' }"
+    >
+    <form (ngSubmit)="onSubmit()" [formGroup]="newBookForm" class="p-fluid">
+        <p-fieldset
+        legend="Basic Information"
+        [toggleable]="true"
+        [collapsed]="false"
+        styleClass="mb-4"
+      >
+        <div class="grid formgrid p-fluid">
+          <div class="field col-12 md:col-6">
+            <label for="title">Title</label>
+            <input id="title" type="text" pInputText formControlName="title" />
+            <small
+              *ngIf="
+                newBookForm.get('title')?.invalid &&
+                newBookForm.get('title')?.touched
+              "
+              class="p-error"
+              >Title is required.</small
+            >
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="isbn">ISBN</label>
+            <input id="isbn" type="text" pInputText formControlName="isbn" />
+          </div>
+        </div>
+      </p-fieldset>
 
-  <div class="flex flex-col gap-2">
-    <label for="genreIds">Genre Id's</label>
-    <p-listbox
-      [options]="genres"
-      formControlName="genreIds"
-      [multiple]="true"
-      [checkbox]="true"
-      optionLabel="name"
-      optionValue="id"
-      showToggleAll="false"
-      class="w-full md:w-56"
-    />
-  </div>
+      <p-fieldset
+        legend="Author(s)"
+        [toggleable]="true"
+        [collapsed]="false"
+        styleClass="mb-4"
+      >
+        <div formArrayName="authors" class="p-fluid">
+          @for (author of authors.controls; track $index; let i = $index) {
+          <div class="field mb-3 flex align-items-center">
+            <p-inputgroup class="flex-grow-1">
+              <input
+                id="author-{{ i }}"
+                type="text"
+                pInputText
+                [formControlName]="i"
+                placeholder="Author {{ i + 1 }}"
+              />
+              <p-button
+                type="button"
+                (click)="removeAuthor(i)"
+                icon="pi pi-times"
+                severity="danger"
+                [text]="true"
+                label="Remove"
+                *ngIf="authors.length > 1"
+              />
+            </p-inputgroup>
+            <small *ngIf="author.invalid && author.touched" class="p-error ml-2"
+              >Author name is required.</small
+            >
+          </div>
+          }
+          <p-button
+            type="button"
+            (click)="addAuthor()"
+            label="Add Another Author"
+            icon="pi pi-plus"
+            severity="secondary"
+          />
+        </div>
+      </p-fieldset>
 
-  <div class="flex flex-col gap-2">
-    <label for="totalCopies">Total Copies</label>
-    <p-inputnumber
-      inputId="totalCopies"
-      formControlName="totalCopies"
-      size="small"
-      variant="filled"
-    />
-  </div>
+      <p-fieldset
+        legend="Publication Details"
+        [toggleable]="true"
+        [collapsed]="true"
+        styleClass="mb-4"
+      >
+        <div class="grid formgrid p-fluid">
+          <div class="field col-12 md:col-6">
+            <label for="publicationYear">Publication Year</label>
+            <p-inputnumber
+              inputId="publicationYear"
+              formControlName="publicationYear"
+              mode="decimal"
+              [useGrouping]="false"
+            />
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="publisher">Publisher</label>
+            <input
+              id="publisher"
+              type="text"
+              pInputText
+              formControlName="publisher"
+            />
+          </div>
+          <div class="field col-12">
+            <label for="imageUrl">Image URL</label>
+            <input
+              id="imageUrl"
+              type="text"
+              pInputText
+              formControlName="imageUrl"
+            />
+          </div>
+        </div>
+      </p-fieldset>
 
-  <div class="flex flex-col gap-2">
-    <label for="availableCopies">Available Copies</label>
-    <p-inputnumber
-      inputId="availableCopies"
-      formControlName="availableCopies"
-      size="small"
-      variant="filled"
-    />
-  </div>
+      <p-fieldset
+        legend="Inventory & Genre"
+        [toggleable]="true"
+        [collapsed]="true"
+        styleClass="mb-4"
+      >
+        <div class="grid formgrid p-fluid">
+          <div class="field col-12 md:col-6">
+            <label for="totalCopies">Total Copies</label>
+            <p-inputnumber
+              inputId="totalCopies"
+              formControlName="totalCopies"
+              mode="decimal"
+              [useGrouping]="false"
+            />
+          </div>
+          <div class="field col-12 md:col-6">
+            <label for="availableCopies">Available Copies</label>
+            <p-inputnumber
+              inputId="availableCopies"
+              formControlName="availableCopies"
+              mode="decimal"
+              [useGrouping]="false"
+            />
+          </div>
+          <div class="field col-12">
+            <label for="genreIds">Genre(s)</label>
+            <p-listbox
+              [options]="genres"
+              formControlName="genreIds"
+              [multiple]="true"
+              [checkbox]="true"
+              optionLabel="name"
+              optionValue="id"
+              [listStyle]="{ 'max-height': '150px' }"
+              styleClass="w-full"
+            />
+          </div>
+        </div>
+      </p-fieldset>
 
-  <div class="flex flex-col gap-2">
-    <label for="imageUrl">Image URL</label>
-    <input
-      id="imageUrl"
-      type="text"
-      pInputText
-      pSize="small"
-      formControlName="imageUrl"
-      variant="filled"
-    />
-  </div>
+      <p-fieldset
+        legend="Description"
+        [toggleable]="true"
+        [collapsed]="true"
+        styleClass="mb-4"
+      >
+        <div class="field col-12">
+          <label for="description">Description</label>
+          <textarea
+            id="description"
+            pInputTextarea
+            formControlName="description"
+            rows="5"
+          ></textarea>
+        </div>
+      </p-fieldset>
 
-  <div class="flex flex-col gap-2">
-    <label for="description">Description</label>
-    <input
-      type="description"
-      pInputText
-      pSize="small"
-      formControlName="description"
-      variant="filled"
-    />
-  </div>
-  <p-button label="Submit" type="submit" />
-</form>
+      <div class="flex justify-content-end gap-2 mt-4">
+        <p-button
+          label="Clear"
+          type="button"
+          severity="secondary"
+          icon="pi pi-refresh"
+          (click)="newBookForm.reset()"
+        ></p-button>
+        <p-button label="Save Book" type="submit" icon="pi pi-check" />
+      </div>
+    </form>
+  </p-card>
+</div> -->
