@@ -33,7 +33,7 @@ import { TagModule } from 'primeng/tag';
   styleUrl: './new-book-form.component.css',
 })
 export class NewBookFormComponent {
-  newBookForm!: FormGroup;
+  newBookForm!: FormGroup<BookForm>;
   genres!: Genre[];
 
   ngOnInit() {
@@ -49,6 +49,7 @@ export class NewBookFormComponent {
       imageUrl: new FormControl(),
       description: new FormControl(),
     });
+
     this.genres = [
       { id: 1, name: 'Science Fiction' },
       { id: 2, name: 'Fantasy' },

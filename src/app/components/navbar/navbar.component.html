@@ -7,18 +7,25 @@
           <span class="ml-2">{{ item.label }}</span>
         </a>
       </ng-container>
-      <ng-template #urlRef>
+      <!-- <ng-template #urlRef>
         <a class="p-menubar-item-link">
           <span [class]="item.icon"></span>
           <span class="ml-2">{{ item.label }}</span>
           <span class="pi pi-fw pi-angle-down ml-2"></span>
         </a>
+      </ng-template> -->
+      <ng-template #urlRef>
+        <p-button size="small" [raised]="true" class="p-menubar-item-link">
+          <span [class]="item.icon"></span>
+          <span class="ml-2">{{ item.label }}</span>
+          <span class="pi pi-fw pi-angle-down ml-2"></span>
+        </p-button>
       </ng-template>
     </ng-template>
     <ng-template #end>
       <p-button
-        variant="outlined"
         severity="primary"
+        [raised]="true"
         size="small"
         [icon]="displayIcon()"
         (click)="toggleDisplayMode()"

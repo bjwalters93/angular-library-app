@@ -1,61 +1,72 @@
-<div class="w-full max-w-[800px] m-auto">
-  <p-card header="Add New Book">
-    <form
-      (ngSubmit)="onSubmit()"
-      [formGroup]="newBookForm"
-      class="flex flex-col items-center gap-4"
-    >
-      <div class="w-full">
-        <p-fieldset legend="Basic Information">
-          <div class="flex justify-evenly">
-            <div class="flex flex-col gap-2 items-start">
-              <p-tag value="Title" />
+<!-- <p-card header="Add New Book" class="w-full! max-w-[800px]! m-auto!"> -->
+<p-card header="Add New Book" styleClass="w-full! max-w-[600px]! m-auto!">
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="newBookForm"
+    class="flex flex-col items-center gap-4"
+  >
+    <!-- <div class="w-full"> -->
+    <p-fieldset class="w-full!" legend="Basic Information">
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-2">
+          <p-tag value="Title" severity="secondary" />
+          <input
+            id="title"
+            type="text"
+            pInputText
+            formControlName="title"
+            placeholder="Title"
+          />
+        </div>
+        <div class="flex flex-col gap-2">
+          <p-tag value="Isbn" severity="secondary" />
+          <input
+            type="text"
+            pInputText
+            formControlName="isbn"
+            placeholder="Isbn"
+          />
+        </div>
+      </div>
+    </p-fieldset>
+    <!-- </div> -->
+    <div class="w-full">
+      <p-fieldset legend="Author(s)">
+        <div class="mb-2 flex flex-col">
+          <p-tag value="Author(s)" severity="secondary" />
+        </div>
+        <div class="flex flex-col gap-4" formArrayName="authors">
+          @for (author of authors.controls; track $index; let i = $index) {
+          <div>
+            <p-inputgroup>
               <input
-                id="title"
+                id="author-{{ i }}"
                 type="text"
                 pInputText
-                formControlName="title"
+                [formControlName]="i"
+                placeholder="Author {{ i + 1 }}"
               />
-            </div>
-            <div class="flex flex-col gap-2 items-start">
-              <label for="isbn"><p-tag value="Isbn" /></label>
-              <input id="isbn" type="text" pInputText formControlName="isbn" />
-            </div>
-          </div>
-        </p-fieldset>
-      </div>
-      <div class="w-full">
-        <p-fieldset legend="Author(s)">
-          <div class="flex flex-col gap-2" formArrayName="authors">
-            <label>Author(s)</label>
-            @for (author of authors.controls; track $index; let i = $index) {
-            <div>
-              <p-inputgroup>
-                <input
-                  id="author-{{ i }}"
-                  type="text"
-                  pInputText
-                  [formControlName]="i"
-                  placeholder="Author {{ i + 1 }}"
+              <p-inputgroup-addon>
+                <p-button
+                  type="button"
+                  (click)="removeAuthor(i)"
+                  icon="pi pi-times"
+                  variant="text"
+                  severity="secondary"
                 />
-                <p-inputgroup-addon>
-                  <p-button
-                    type="button"
-                    (click)="removeAuthor(i)"
-                    icon="pi pi-times"
-                    variant="text"
-                    severity="secondary"
-                  />
-                </p-inputgroup-addon>
-              </p-inputgroup>
-            </div>
-            }
-            <p-button type="button" (click)="addAuthor()" label="Add Author" />
+              </p-inputgroup-addon>
+            </p-inputgroup>
           </div>
-        </p-fieldset>
-      </div>
-      <div class="w-full">
-        <p-fieldset legend="Publication Details">
+          }
+        </div>
+        <div class="mt-4 text-end">
+          <p-button type="button" (click)="addAuthor()" label="Add Author" />
+        </div>
+      </p-fieldset>
+    </div>
+    <div class="w-full">
+      <p-fieldset legend="Publication Details">
+        <div class="flex flex-col gap-4">
           <div class="flex flex-col gap-2">
             <label for="publisher">Publisher</label>
             <input
@@ -63,6 +74,7 @@
               type="text"
               pInputText
               formControlName="publisher"
+              placeholder="Publisher"
             />
           </div>
           <div class="flex flex-col gap-2">
@@ -70,6 +82,7 @@
             <p-inputnumber
               inputId="publicationYear"
               formControlName="publicationYear"
+              placeholder="1993"
             />
           </div>
           <div class="flex flex-col gap-2">
@@ -79,65 +92,59 @@
               type="text"
               pInputText
               formControlName="imageUrl"
+              placeholder="www.imageurl.com/ex"
             />
           </div>
-        </p-fieldset>
-      </div>
-      <div class="w-full">
-        <p-fieldset legend="Inventory & Genres">
-          <div class="flex flex-col gap-2">
-            <label for="genreIds">Genre Id's</label>
-            <p-listbox
-              [options]="genres"
-              formControlName="genreIds"
-              [multiple]="true"
-              [checkbox]="true"
-              optionLabel="name"
-              optionValue="id"
-              showToggleAll="false"
-              class="w-full md:w-56"
-            />
-          </div>
+        </div>
+      </p-fieldset>
+    </div>
+    <div class="w-full">
+      <p-fieldset legend="Inventory & Genres">
+        <div class="flex flex-col gap-2">
+          <label for="genreIds">Genre Id's</label>
+          <p-listbox
+            [options]="genres"
+            formControlName="genreIds"
+            [multiple]="true"
+            [checkbox]="true"
+            optionLabel="name"
+            optionValue="id"
+            showToggleAll="false"
+            class="w-full md:w-56"
+          />
+        </div>
 
-          <div class="flex flex-col gap-2">
-            <label for="totalCopies">Total Copies</label>
-            <p-inputnumber
-              inputId="totalCopies"
-              formControlName="totalCopies"
-            />
-          </div>
+        <div class="flex flex-col gap-2">
+          <label for="totalCopies">Total Copies</label>
+          <p-inputnumber inputId="totalCopies" formControlName="totalCopies" />
+        </div>
 
-          <div class="flex flex-col gap-2">
-            <label for="availableCopies">Available Copies</label>
-            <p-inputnumber
-              inputId="availableCopies"
-              formControlName="availableCopies"
-            />
-          </div>
+        <div class="flex flex-col gap-2">
+          <label for="availableCopies">Available Copies</label>
+          <p-inputnumber
+            inputId="availableCopies"
+            formControlName="availableCopies"
+          />
+        </div>
 
-          <div class="flex flex-col gap-2">
-            <label for="description">Description</label>
-            <input
-              type="description"
-              pInputText
-              formControlName="description"
-            />
-          </div>
-        </p-fieldset>
-      </div>
-      <div class="flex justify-content-end gap-2 mt-4">
-        <p-button
-          label="Clear"
-          type="button"
-          severity="secondary"
-          icon="pi pi-refresh"
-          (click)="newBookForm.reset()"
-        ></p-button>
-        <p-button label="Save Book" type="submit" icon="pi pi-check" />
-      </div>
-    </form>
-  </p-card>
-</div>
+        <div class="flex flex-col gap-2">
+          <label for="description">Description</label>
+          <input type="description" pInputText formControlName="description" />
+        </div>
+      </p-fieldset>
+    </div>
+    <div class="flex justify-content-end gap-2 mt-4">
+      <p-button
+        label="Clear"
+        type="button"
+        severity="secondary"
+        icon="pi pi-refresh"
+        (click)="newBookForm.reset()"
+      ></p-button>
+      <p-button label="Save Book" type="submit" icon="pi pi-check" />
+    </div>
+  </form>
+</p-card>
 
 <!-- <div class="p-4">
     <p-card
