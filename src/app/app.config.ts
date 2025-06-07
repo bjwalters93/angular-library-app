@@ -14,7 +14,7 @@ const MyPreset = definePreset(Aura, {
       colorScheme: {
         light: {
           root: {
-            background: '{surface.50}',
+            background: '{surface.0}',
             color: '{surface.700}',
           },
           subtitle: {
@@ -126,6 +126,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     providePrimeNG({
+      ripple: true,
       theme: {
         preset: MyPreset,
         options: {

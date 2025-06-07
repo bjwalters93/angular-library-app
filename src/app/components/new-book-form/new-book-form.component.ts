@@ -13,6 +13,8 @@ import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { FieldsetModule } from 'primeng/fieldset';
 import { CommonModule } from '@angular/common';
 import { TagModule } from 'primeng/tag';
+import { Fluid } from 'primeng/fluid';
+import { PanelModule } from 'primeng/panel';
 
 @Component({
   selector: 'app-new-book-form',
@@ -28,6 +30,8 @@ import { TagModule } from 'primeng/tag';
     FieldsetModule,
     CommonModule,
     TagModule,
+    Fluid,
+    PanelModule,
   ],
   templateUrl: './new-book-form.component.html',
   styleUrl: './new-book-form.component.css',
