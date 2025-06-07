@@ -1,4 +1,4 @@
-<div class="pt-0 pl-4 pr-4">
+<div class="pt-0 pl-10 pr-10">
   <p-table
     [value]="books"
     showGridlines
@@ -12,8 +12,8 @@
   >
     <ng-template #caption>
       <div class="flex items-center justify-between">
-        <span class="text-xl font-bold"
-          >All Books: {{ books ? books.length : 0 }}</span
+        <span class="text-xl font-bold ml-4"
+          >Books Inventory: {{ books ? books.length : 0 }}</span
         >
         <p-iconfield iconPosition="left" class="ml-auto">
           <p-inputicon>
@@ -33,7 +33,10 @@
         <th>Id</th>
         <th>Title</th>
         <th>Author</th>
+        <th>Cover</th>
         <th>Available Copies</th>
+        <th>Total Copies</th>
+        <th>Status</th>
         <th style="width: 5rem"></th>
       </tr>
     </ng-template>
@@ -43,14 +46,38 @@
         <td>{{ book.title }}</td>
         <td>{{ book.author }}</td>
         <td>
+          <div class="flex items-center gap-2">
+            <img
+              alt="book cover"
+              [src]="book.imageUrl"
+              style="
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 2px solid #ddd;
+              "
+            />
+          </div>
+        </td>
+        <td>
           {{ book.availableCopies }}
+        </td>
+        <td>{{ book.totalCopies }}</td>
+        <td>
+          <p-tag [severity]="setStatus(book).severity">{{
+            setStatus(book).text
+          }}</p-tag>
         </td>
         <td>
           <p-button
             icon="pi pi-eye"
-            (click)="selectedBookRow(book)"
-            severity="secondary"
+            severity="info"
             rounded
+            size="small"
+            label="View"
+            [link]="true"
+            [routerLink]="['/books', book.id]"
           />
         </td>
       </tr>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, input, OnInit } from '@angular/core';
 import { BookService } from '../../services/book.service';
 import { Book } from '../../interfaces/book.interface';
 import { TableModule } from 'primeng/table';
@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-books-table',
@@ -23,13 +24,12 @@ import { InputTextModule } from 'primeng/inputtext';
     IconFieldModule,
     InputIconModule,
     InputTextModule,
+    TagModule,
+    RouterLink,
   ],
 })
 export class BooksTableComponent implements OnInit {
   books!: Book[];
-  //   You can use the selected book property to programmatically select any row...currently it's doing nothing.
-  // You could create a method, combine it with search, and update the property to manually select rows.
-  //   selectedBook!: Book;
   selectedBook!: Book;
   loading: boolean = false;
   error: string | null = null;
@@ -61,11 +61,27 @@ export class BooksTableComponent implements OnInit {
     console.log('Book:', book);
   }
 
+  setStatus(book: Book) {
+    let status = {
+      severity: '',
+      text: '',
+    };
+    if (book.availableCopies == 0) {
+      status.severity = 'danger';
+      status.text = 'Unavailable';
+      return status;
+    } else {
+      status.severity = 'success';
+      status.text = 'Available';
+      return status;
+    }
+  }
+
   onRowSelect(event: any) {
-    console.log('Event:', event.data);
+    // console.log('Event:', event.data);
   }
 
   onRowUnselect(event: any) {
-    console.log('Event:', event.data);
+    // console.log('Event:', event.data);
   }
 }

@@ -7,6 +7,7 @@ import { PatronsSearchComponent } from './components/patrons-search/patrons-sear
 import { NewBookComponent } from './components/new-book/new-book.component';
 import { NewPatronComponent } from './components/new-patron/new-patron.component';
 import { NewLoanComponent } from './components/new-loan/new-loan.component';
+import { ViewBookComponent } from './components/view-book/view-book.component';
 
 export const routes: Routes = [
   // Books Collection
@@ -15,6 +16,7 @@ export const routes: Routes = [
     component: BooksComponent,
   },
   { path: 'books/new', component: NewBookComponent },
+  { path: 'books/:id', component: ViewBookComponent },
   //   Patrons Collection
   { path: 'patrons', component: PatronsComponent },
   { path: 'patrons/new', component: NewPatronComponent },

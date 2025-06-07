@@ -2,7 +2,6 @@ import { Component, OnInit, signal } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Menubar } from 'primeng/menubar';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
@@ -19,8 +18,6 @@ export class NavbarComponent implements OnInit {
   lightIcon = 'pi pi-sun';
   darkIcon = 'pi pi-moon';
   displayIcon = signal(this.lightIcon);
-
-  constructor(private router: Router) {}
 
   toggleDisplayMode() {
     const element = document.querySelector('html');
