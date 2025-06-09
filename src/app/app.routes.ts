@@ -16,7 +16,7 @@ export const routes: Routes = [
     component: BooksComponent,
   },
   { path: 'books/new', component: NewBookComponent },
-  { path: 'books/:id', component: ViewBookComponent },
+  { path: 'books/:bookId', component: ViewBookComponent },
   //   Patrons Collection
   { path: 'patrons', component: PatronsComponent },
   { path: 'patrons/new', component: NewPatronComponent },

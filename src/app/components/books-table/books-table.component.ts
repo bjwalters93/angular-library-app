@@ -1,15 +1,16 @@
-import { Component, input, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 import { BookService } from '../../services/book.service';
 import { Book } from '../../interfaces/book.interface';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
-import { RatingModule } from 'primeng/rating';
-import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
-import { RouterLink } from '@angular/router';
+import { Skeleton } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-books-table',
@@ -18,43 +19,31 @@ import { RouterLink } from '@angular/router';
   imports: [
     TableModule,
     TagModule,
-    RatingModule,
     ButtonModule,
-    CommonModule,
     IconFieldModule,
     InputIconModule,
     InputTextModule,
+    Skeleton,
     TagModule,
     RouterLink,
+    AsyncPipe,
   ],
 })
-export class BooksTableComponent implements OnInit {
-  books!: Book[];
+export class BooksTableComponent {
+  books$!: Observable<Book[]>;
+  private bookService = inject(BookService);
+  skeltonArray = Array.from({ length: 15 }).map((_, i) => `Item #${i}`);
   selectedBook!: Book;
-  loading: boolean = false;
-  error: string | null = null;
 
-  constructor(private bookService: BookService) {}
-
-  ngOnInit(): void {
-    this.getBooks();
+  constructor() {
+    // this.books$ = this.bookService.getBooks();
+    this.myMethod();
   }
 
-  getBooks(): void {
-    this.loading = true;
-    this.error = null; // Clear previous errors
-    this.bookService.getBooks().subscribe({
-      next: (data: Book[]) => {
-        console.log(data);
-        this.books = data;
-        this.loading = false;
-      },
-      error: (err: Error) => {
-        this.error = err.message;
-        this.loading = false;
-        console.error('Failed to fetch books:', err);
-      },
-    });
+  myMethod() {
+    setTimeout(() => {
+      this.books$ = this.bookService.getBooks();
+    }, 500);
   }
 
   selectedBookRow(book: Book) {

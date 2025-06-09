@@ -1,8 +1,8 @@
-<div class="pt-0 pl-10 pr-10">
+<div class="pt-3 pl-10 pr-10 pb-10">
+  @if (books$ | async; as books) {
   <p-table
     [value]="books"
     showGridlines
-    size="small"
     selectionMode="single"
     [(selection)]="selectedBook"
     dataKey="id"
@@ -83,4 +83,56 @@
       </tr>
     </ng-template>
   </p-table>
+  } @else {
+  <p-table [value]="skeltonArray" [tableStyle]="{ 'min-width': '60rem' }">
+    <ng-template #caption>
+      <div class="flex items-center justify-between">
+        <span class="text-xl font-bold ml-4">Books Inventory: </span>
+        <p-iconfield iconPosition="left" class="ml-auto">
+          <p-inputicon>
+            <i class="pi pi-search"></i>
+          </p-inputicon>
+          <input
+            pInputText
+            pSize="small"
+            type="text"
+            placeholder="Search keyword"
+          />
+        </p-iconfield>
+      </div>
+    </ng-template>
+    <ng-template #header>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Cover</th>
+        <th>Available Copies</th>
+        <th>Total Copies</th>
+        <th>Status</th>
+        <th style="width: 5rem"></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-book>
+      <tr [pSelectableRow]="book">
+        <td><p-skeleton /></td>
+        <td><p-skeleton /></td>
+        <td><p-skeleton /></td>
+        <td>
+          <p-skeleton />
+        </td>
+        <td>
+          <p-skeleton />
+        </td>
+        <td><p-skeleton /></td>
+        <td>
+          <p-skeleton />
+        </td>
+        <td>
+          <p-skeleton />
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  }
 </div>

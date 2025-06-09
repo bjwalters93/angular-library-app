@@ -2,3 +2,12 @@
 @import "tailwindcss";
 @plugin "tailwindcss-primeui";
 @import "primeicons/primeicons.css";
+
+/* html {
+  background-color: var(--p-slate-100);
+  background-color: var(--p-slate-100);
+} */
+
+/* .background-main {
+  background-color: rgb(20, 20, 20);
+} */

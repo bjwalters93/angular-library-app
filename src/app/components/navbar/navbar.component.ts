@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
     const element = document.querySelector('html');
 
     element!.classList.toggle('my-app-dark');
+    // element!.classList.toggle('background-main');
 
     this.displayMode.update((current) => !current);
 
