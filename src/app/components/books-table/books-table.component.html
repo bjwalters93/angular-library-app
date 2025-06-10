@@ -3,18 +3,25 @@
   <p-table
     [value]="books"
     showGridlines
-    selectionMode="single"
-    [(selection)]="selectedBook"
-    dataKey="id"
-    (onRowSelect)="onRowSelect($event)"
-    (onRowUnselect)="onRowUnselect($event)"
     [tableStyle]="{ 'min-width': '60rem' }"
   >
     <ng-template #caption>
       <div class="flex items-center justify-between">
         <span class="text-xl font-bold ml-4"
-          >Books Inventory: {{ books ? books.length : 0 }}</span
+          >Total Book: {{ books ? books.length : 0 }}</span
         >
+        <p-button
+          size="small"
+          variant="outlined"
+          label="Add Book"
+          (onClick)="newBook()"
+        />
+        <p-button
+          size="small"
+          variant="outlined"
+          label="Remove Book"
+          severity="danger"
+        />
         <p-iconfield iconPosition="left" class="ml-auto">
           <p-inputicon>
             <i class="pi pi-search"></i>
@@ -44,7 +51,7 @@
       <tr [pSelectableRow]="book">
         <td>{{ book.id }}</td>
         <td>{{ book.title }}</td>
-        <td>{{ book.author }}</td>
+        <td>{{ book.authors.join(", ") }}</td>
         <td>
           <div class="flex items-center gap-2">
             <img
@@ -72,12 +79,10 @@
         <td>
           <p-button
             icon="pi pi-eye"
-            severity="info"
-            rounded
             size="small"
             label="View"
-            [link]="true"
-            [routerLink]="['/books', book.id]"
+            variant="outlined"
+            (onClick)="viewBook(book.id)"
           />
         </td>
       </tr>

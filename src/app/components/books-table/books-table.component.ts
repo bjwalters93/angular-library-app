@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject, model } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { BookService } from '../../services/book.service';
@@ -11,6 +10,7 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { Skeleton } from 'primeng/skeleton';
+import { generateStatus } from '../../Utils/status.utils';
 
 @Component({
   selector: 'app-books-table',
@@ -25,15 +25,16 @@ import { Skeleton } from 'primeng/skeleton';
     InputTextModule,
     Skeleton,
     TagModule,
-    RouterLink,
     AsyncPipe,
   ],
 })
 export class BooksTableComponent {
   books$!: Observable<Book[]>;
+  viewBookVisibility = model(false);
+  newBookVisibility = model(false);
+  bookId = model('');
   private bookService = inject(BookService);
   skeltonArray = Array.from({ length: 15 }).map((_, i) => `Item #${i}`);
-  selectedBook!: Book;
 
   constructor() {
     // this.books$ = this.bookService.getBooks();
@@ -46,31 +47,17 @@ export class BooksTableComponent {
     }, 500);
   }
 
-  selectedBookRow(book: Book) {
-    console.log('Book:', book);
-  }
-
   setStatus(book: Book) {
-    let status = {
-      severity: '',
-      text: '',
-    };
-    if (book.availableCopies == 0) {
-      status.severity = 'danger';
-      status.text = 'Unavailable';
-      return status;
-    } else {
-      status.severity = 'success';
-      status.text = 'Available';
-      return status;
-    }
+    return generateStatus(book);
   }
 
-  onRowSelect(event: any) {
-    // console.log('Event:', event.data);
+  viewBook(id: string) {
+    this.bookId.set(id);
+    this.viewBookVisibility.set(true);
   }
 
-  onRowUnselect(event: any) {
-    // console.log('Event:', event.data);
+  newBook() {
+    this.newBookVisibility.set(true);
+    console.log('new book button works!');
   }
 }

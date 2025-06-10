@@ -1,1 +1,20 @@
-<app-books-table />
+<app-books-table
+  [(viewBookVisibility)]="viewBookVisibility"
+  [(newBookVisibility)]="newBookVisibility"
+  [(bookId)]="bookId"
+/>
+<!-- <app-view-book
+  [(viewBookVisibility)]="viewBookVisibility"
+  [(bookId)]="bookId"
+/> -->
+
+<!-- <app-new-book [(newBookVisibility)]="newBookVisibility" /> -->
+
+@if (viewBookVisibility()) {
+<app-view-book
+  [(viewBookVisibility)]="viewBookVisibility"
+  [(bookId)]="bookId"
+/>
+} @if (newBookVisibility()) {
+<app-new-book [(newBookVisibility)]="newBookVisibility" />
+}

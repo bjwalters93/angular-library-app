@@ -1,24 +1,39 @@
-import { Component, input, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, model, signal } from '@angular/core';
 import { BookService } from '../../services/book.service';
 import { Book } from '../../interfaces/book.interface';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { Tag } from 'primeng/tag';
-import { Button } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { getGenres } from '../../Utils/genres.utils';
+import { generateStatus } from '../../Utils/status.utils';
 
 @Component({
   selector: 'app-view-book',
-  imports: [AsyncPipe, CardModule, Tag, Button],
+  imports: [AsyncPipe, CardModule, Tag, DialogModule],
   templateUrl: './view-book.component.html',
   styleUrl: './view-book.component.css',
 })
 export class ViewBookComponent implements OnInit {
-  bookId = input('');
   book$!: Observable<Book>;
+  viewBookVisibility = model(false);
+  bookId = model('');
   private bookService = inject(BookService);
 
-  ngOnInit() {
+  generateGenres(genreIds: number[]) {
+    return getGenres(genreIds);
+  }
+
+  setStatus(book: Book) {
+    return generateStatus(book);
+  }
+
+  getBook() {
     this.book$ = this.bookService.getBookById(this.bookId());
+  }
+
+  ngOnInit() {
+    // this.book$ = this.bookService.getBookById(this.bookId());
   }
 }
