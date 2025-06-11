@@ -1,4 +1,4 @@
-import { Component, inject, model } from '@angular/core';
+import { Component, inject, model, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { BookService } from '../../services/book.service';
@@ -14,6 +14,7 @@ import { generateStatus } from '../../Utils/status.utils';
 import { InputGroup } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { DividerModule } from 'primeng/divider';
+import { SelectModule } from 'primeng/select';
 
 @Component({
   selector: 'app-books-table',
@@ -32,9 +33,10 @@ import { DividerModule } from 'primeng/divider';
     InputGroup,
     InputGroupAddonModule,
     DividerModule,
+    SelectModule,
   ],
 })
-export class BooksTableComponent {
+export class BooksTableComponent implements OnInit {
   books$!: Observable<Book[]>;
   viewBookVisibility = model(false);
   newBookVisibility = model(false);
@@ -65,5 +67,18 @@ export class BooksTableComponent {
   newBook() {
     this.newBookVisibility.set(true);
     console.log('new book button works!');
+  }
+
+  searchTypes: any;
+  selectedSearch: any;
+
+  ngOnInit(): void {
+    this.searchTypes = [
+      { name: 'Isbn', code: 'NY' },
+      { name: 'Title', code: 'RM' },
+      { name: 'Id', code: 'LDN' },
+      { name: 'Author', code: 'IST' },
+      { name: 'Genre', code: 'PRS' },
+    ];
   }
 }

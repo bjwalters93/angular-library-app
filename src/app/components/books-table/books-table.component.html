@@ -19,16 +19,25 @@
           <p-divider layout="vertical" />
           <p-button size="small" label="Remove Book" severity="warn" />
           <p-divider layout="vertical" />
-          <div>
+          <div class="flex gap-2">
             <p-inputgroup>
-              <p-inputgroup-addon>
-                <p-button icon="pi pi-times" severity="secondary" />
-              </p-inputgroup-addon>
               <input pInputText placeholder="Search" pSize="small" />
-              <p-inputgroup-addon>
-                <p-button icon="pi pi-search" severity="info" />
-              </p-inputgroup-addon>
+              <p-button
+                icon="pi pi-times"
+                severity="secondary"
+                size="small"
+                variant="outlined"
+              />
             </p-inputgroup>
+            <p-select
+              [options]="searchTypes"
+              optionLabel="name"
+              placeholder="Search by"
+              class="w-full md:w-56"
+              size="small"
+              showClear="true"
+            />
+            <p-button icon="pi pi-search" severity="info" />
           </div>
         </div>
       </div>
