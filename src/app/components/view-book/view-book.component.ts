@@ -18,7 +18,7 @@ import { generateStatus } from '../../Utils/status.utils';
 export class ViewBookComponent implements OnInit {
   book$!: Observable<Book>;
   viewBookVisibility = model(false);
-  bookId = model('');
+  bookId = model(0);
   private bookService = inject(BookService);
 
   generateGenres(genreIds: number[]) {
@@ -29,11 +29,7 @@ export class ViewBookComponent implements OnInit {
     return generateStatus(book);
   }
 
-  getBook() {
-    this.book$ = this.bookService.getBookById(this.bookId());
-  }
-
   ngOnInit() {
-    // this.book$ = this.bookService.getBookById(this.bookId());
+    this.book$ = this.bookService.getBookById(this.bookId());
   }
 }

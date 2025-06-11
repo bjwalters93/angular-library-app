@@ -11,6 +11,9 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { Skeleton } from 'primeng/skeleton';
 import { generateStatus } from '../../Utils/status.utils';
+import { InputGroup } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-books-table',
@@ -26,13 +29,16 @@ import { generateStatus } from '../../Utils/status.utils';
     Skeleton,
     TagModule,
     AsyncPipe,
+    InputGroup,
+    InputGroupAddonModule,
+    DividerModule,
   ],
 })
 export class BooksTableComponent {
   books$!: Observable<Book[]>;
   viewBookVisibility = model(false);
   newBookVisibility = model(false);
-  bookId = model('');
+  bookId = model(0);
   private bookService = inject(BookService);
   skeltonArray = Array.from({ length: 15 }).map((_, i) => `Item #${i}`);
 
@@ -51,7 +57,7 @@ export class BooksTableComponent {
     return generateStatus(book);
   }
 
-  viewBook(id: string) {
+  viewBook(id: number) {
     this.bookId.set(id);
     this.viewBookVisibility.set(true);
   }

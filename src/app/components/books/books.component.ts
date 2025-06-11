@@ -12,5 +12,5 @@ import { NewBookComponent } from '../new-book/new-book.component';
 export class BooksComponent {
   viewBookVisibility = signal(false);
   newBookVisibility = signal(false);
-  bookId = signal('');
+  bookId = signal(0);
 }

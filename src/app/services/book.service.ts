@@ -18,7 +18,7 @@ export class BookService {
       .pipe(retry(2), catchError(this.handleError));
   }
 
-  getBookById(id: string): Observable<Book> {
+  getBookById(id: number): Observable<Book> {
     const url = `${this.apiUrl}/${id}`;
     return this.http
       .get<Book>(url)

@@ -8,18 +8,16 @@ import { NewPatronComponent } from './components/new-patron/new-patron.component
 import { NewLoanComponent } from './components/new-loan/new-loan.component';
 
 export const routes: Routes = [
-  // Books Collection
+  { path: 'books', component: BooksComponent },
   {
-    path: 'books',
-    component: BooksComponent,
+    path: '',
+    redirectTo: '/books',
+    pathMatch: 'full',
   },
-  //   Patrons Collection
   { path: 'patrons', component: PatronsComponent },
   { path: 'patrons/new', component: NewPatronComponent },
-  //   Loans Collection
   { path: 'loans', component: LoansComponent },
   { path: 'loans/new', component: NewLoanComponent },
-  //   Search with query parameters
   { path: 'books/search', component: BooksSearchComponent },
   { path: 'patrons/search', component: PatronsSearchComponent },
 ];

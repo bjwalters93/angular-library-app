@@ -1,38 +1,36 @@
-<div class="pt-3 pl-10 pr-10 pb-10">
+<div class="pl-3 pr-3 pb-3">
   @if (books$ | async; as books) {
   <p-table
     [value]="books"
     showGridlines
     [tableStyle]="{ 'min-width': '60rem' }"
+    [scrollable]="true"
+    scrollHeight="800px"
   >
     <ng-template #caption>
       <div class="flex items-center justify-between">
         <span class="text-xl font-bold ml-4"
           >Total Book: {{ books ? books.length : 0 }}</span
         >
-        <p-button
-          size="small"
-          variant="outlined"
-          label="Add Book"
-          (onClick)="newBook()"
-        />
-        <p-button
-          size="small"
-          variant="outlined"
-          label="Remove Book"
-          severity="danger"
-        />
-        <p-iconfield iconPosition="left" class="ml-auto">
-          <p-inputicon>
-            <i class="pi pi-search"></i>
-          </p-inputicon>
-          <input
-            pInputText
-            pSize="small"
-            type="text"
-            placeholder="Search keyword"
-          />
-        </p-iconfield>
+        <div class="flex gap-2">
+          <p-button size="small" label="Add Book" (onClick)="newBook()" />
+          <p-divider layout="vertical" />
+          <p-button size="small" label="Edit Book" severity="info" />
+          <p-divider layout="vertical" />
+          <p-button size="small" label="Remove Book" severity="warn" />
+          <p-divider layout="vertical" />
+          <div>
+            <p-inputgroup>
+              <p-inputgroup-addon>
+                <p-button icon="pi pi-times" severity="secondary" />
+              </p-inputgroup-addon>
+              <input pInputText placeholder="Search" pSize="small" />
+              <p-inputgroup-addon>
+                <p-button icon="pi pi-search" severity="info" />
+              </p-inputgroup-addon>
+            </p-inputgroup>
+          </div>
+        </div>
       </div>
     </ng-template>
     <ng-template #header>
@@ -44,6 +42,7 @@
         <th>Available Copies</th>
         <th>Total Copies</th>
         <th>Status</th>
+        <th style="width: 5rem"></th>
         <th style="width: 5rem"></th>
       </tr>
     </ng-template>
@@ -77,12 +76,33 @@
           }}</p-tag>
         </td>
         <td>
+          @if (setStatus(book).text === "Available") {
+          <p-button
+            icon="pi pi-barcode"
+            size="small"
+            label="Checkout"
+            severity="success"
+            variant="outlined"
+          />
+          } @else {
+          <p-button
+            icon="pi pi-barcode"
+            size="small"
+            label="Checkout"
+            severity="secondary"
+            text="true"
+            disabled="true"
+          />
+          }
+        </td>
+        <td>
           <p-button
             icon="pi pi-eye"
             size="small"
             label="View"
-            variant="outlined"
             (onClick)="viewBook(book.id)"
+            severity="help"
+            variant="outlined"
           />
         </td>
       </tr>
