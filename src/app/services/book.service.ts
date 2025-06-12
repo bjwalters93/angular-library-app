@@ -25,7 +25,7 @@ export class BookService {
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  getBookByTitle(title: string): Observable<Book[]> {
+  getBooksByTitle(title: string): Observable<Book[]> {
     const url = `${this.apiUrl}?title=${title}`;
     return this.http
       .get<Book[]>(url)

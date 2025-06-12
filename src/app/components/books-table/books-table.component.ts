@@ -9,7 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
-import { Skeleton } from 'primeng/skeleton';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { generateStatus } from '../../Utils/status.utils';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { DividerModule } from 'primeng/divider';
@@ -18,6 +18,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { genres } from '../../Utils/genres.utils';
 import { Genre } from '../../interfaces/genre.interface';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-books-table',
@@ -30,7 +31,7 @@ import { Genre } from '../../interfaces/genre.interface';
     IconFieldModule,
     InputIconModule,
     InputTextModule,
-    Skeleton,
+    ProgressSpinnerModule,
     TagModule,
     AsyncPipe,
     InputGroupAddonModule,
@@ -48,7 +49,6 @@ export class BooksTableComponent implements OnInit {
   searchTypes!: string[];
   genres!: Genre[];
   private bookService = inject(BookService);
-  skeltonArray = Array.from({ length: 15 }).map((_, i) => `Item #${i}`);
 
   constructor() {
     // this.books$ = this.bookService.getBooks();
@@ -58,7 +58,7 @@ export class BooksTableComponent implements OnInit {
   myMethod() {
     setTimeout(() => {
       this.books$ = this.bookService.getBooks();
-    }, 500);
+    }, 1500);
   }
 
   setStatus(book: Book) {
@@ -72,23 +72,37 @@ export class BooksTableComponent implements OnInit {
 
   newBook() {
     this.newBookVisibility.set(true);
-    console.log('new book button works!');
   }
 
   onSubmit() {
-    if (this.searchForm.value.searchType === 'Isbn') {
-      this.books$ = this.bookService.getBookByIsbn(
-        this.searchForm.value.searchTerm
-      );
+    let searchType = this.searchForm.value.searchType;
+    let searchTerm = this.searchForm.value.searchTerm;
+    if (searchType === 'Isbn' && this.searchForm.valid) {
+      this.books$ = this.bookService.getBookByIsbn(searchTerm);
+    } else if (searchType === 'Title') {
+      this.books$ = this.bookService.getBooksByTitle(searchTerm);
+    } else if (searchType === 'Author') {
+      this.books$ = this.bookService.getBooksByAuthor(searchTerm);
+    } else if (searchType === 'Genre') {
+      this.books$ = this.bookService.getBooksByGenre(searchTerm);
     }
+  }
+
+  searchFormReset() {
+    this.searchForm.reset();
+    this.books$ = this.bookService.getBooks();
+  }
+
+  get searchTerm(): FormControl {
+    return this.searchForm.get('searchTerm') as FormControl;
   }
 
   ngOnInit() {
     this.searchForm = new FormGroup({
-      searchType: new FormControl(),
-      searchTerm: new FormControl(),
+      searchType: new FormControl('', Validators.required),
+      searchTerm: new FormControl('', Validators.required),
     });
-    this.searchTypes = ['Isbn', 'Title', 'Id', 'Author', 'Genre'];
+    this.searchTypes = ['Isbn', 'Title', 'Author', 'Genre'];
     this.genres = genres;
   }
 }

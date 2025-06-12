@@ -31,6 +31,10 @@
                 placeholder="Search"
                 pSize="small"
                 formControlName="searchTerm"
+                id="searchTerm"
+                [class]="
+                  searchTerm.invalid && searchTerm.touched ? 'ng-invalid' : ''
+                "
               />
 
               } @else {
@@ -41,6 +45,7 @@
                 optionValue="id"
                 size="small"
                 formControlName="searchTerm"
+                [class]="'ng-invalid'"
               />
               }
               <p-select
@@ -48,12 +53,13 @@
                 placeholder="Search by"
                 size="small"
                 formControlName="searchType"
+                required="true"
               />
               <p-button icon="pi pi-search" severity="info" type="submit" />
               <p-button
                 icon="pi pi-refresh"
                 severity="secondary"
-                (click)="searchForm.reset()"
+                (onClick)="searchFormReset()"
               />
             </form>
           </div>
@@ -136,55 +142,9 @@
     </ng-template>
   </p-table>
   } @else {
-  <p-table [value]="skeltonArray" [tableStyle]="{ 'min-width': '60rem' }">
-    <ng-template #caption>
-      <div class="flex items-center justify-between">
-        <span class="text-xl font-bold ml-4">Books Inventory: </span>
-        <p-iconfield iconPosition="left" class="ml-auto">
-          <p-inputicon>
-            <i class="pi pi-search"></i>
-          </p-inputicon>
-          <input
-            pInputText
-            pSize="small"
-            type="text"
-            placeholder="Search keyword"
-          />
-        </p-iconfield>
-      </div>
-    </ng-template>
-    <ng-template #header>
-      <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Cover</th>
-        <th>Available Copies</th>
-        <th>Total Copies</th>
-        <th>Status</th>
-        <th style="width: 5rem"></th>
-      </tr>
-    </ng-template>
-    <ng-template #body let-book>
-      <tr [pSelectableRow]="book">
-        <td><p-skeleton /></td>
-        <td><p-skeleton /></td>
-        <td><p-skeleton /></td>
-        <td>
-          <p-skeleton />
-        </td>
-        <td>
-          <p-skeleton />
-        </td>
-        <td><p-skeleton /></td>
-        <td>
-          <p-skeleton />
-        </td>
-        <td>
-          <p-skeleton />
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
+  <p-progress-spinner
+    ariaLabel="loading"
+    [style]="{ width: '30px', height: '30px' }"
+  />
   }
 </div>
