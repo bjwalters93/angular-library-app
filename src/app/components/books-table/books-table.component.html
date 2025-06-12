@@ -19,25 +19,43 @@
           <p-divider layout="vertical" />
           <p-button size="small" label="Remove Book" severity="warn" />
           <p-divider layout="vertical" />
-          <div class="flex gap-2">
-            <p-inputgroup>
-              <input pInputText placeholder="Search" pSize="small" />
-              <p-button
-                icon="pi pi-times"
-                severity="secondary"
-                size="small"
-                variant="outlined"
+          <div>
+            <form
+              class="flex gap-2"
+              (ngSubmit)="onSubmit()"
+              [formGroup]="searchForm"
+            >
+              @if (searchForm.value.searchType !== "Genre") {
+              <input
+                pInputText
+                placeholder="Search"
+                pSize="small"
+                formControlName="searchTerm"
               />
-            </p-inputgroup>
-            <p-select
-              [options]="searchTypes"
-              optionLabel="name"
-              placeholder="Search by"
-              class="w-full md:w-56"
-              size="small"
-              showClear="true"
-            />
-            <p-button icon="pi pi-search" severity="info" />
+
+              } @else {
+              <p-select
+                [options]="genres"
+                placeholder="Select Genre"
+                optionLabel="name"
+                optionValue="id"
+                size="small"
+                formControlName="searchTerm"
+              />
+              }
+              <p-select
+                [options]="searchTypes"
+                placeholder="Search by"
+                size="small"
+                formControlName="searchType"
+              />
+              <p-button icon="pi pi-search" severity="info" type="submit" />
+              <p-button
+                icon="pi pi-refresh"
+                severity="secondary"
+                (click)="searchForm.reset()"
+              />
+            </form>
           </div>
         </div>
       </div>

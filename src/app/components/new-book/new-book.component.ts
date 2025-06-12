@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { TagModule } from 'primeng/tag';
 import { Fluid } from 'primeng/fluid';
 import { Dialog } from 'primeng/dialog';
+import { genres } from '../../Utils/genres.utils';
 
 @Component({
   selector: 'app-new-book',
@@ -38,7 +39,7 @@ import { Dialog } from 'primeng/dialog';
 })
 export class NewBookComponent {
   newBookForm!: FormGroup<BookForm>;
-  genres!: Genre[];
+  genres: Genre[] = genres;
   newBookVisibility = model(false);
 
   ngOnInit() {
@@ -54,21 +55,6 @@ export class NewBookComponent {
       imageUrl: new FormControl(),
       description: new FormControl(),
     });
-
-    this.genres = [
-      { id: 1, name: 'Science Fiction' },
-      { id: 2, name: 'Fantasy' },
-      { id: 3, name: 'Classic' },
-      { id: 4, name: 'Mystery' },
-      { id: 5, name: 'Epic' },
-      { id: 6, name: 'Historical Fiction' },
-      { id: 7, name: 'Romance' },
-      { id: 8, name: 'Thriller' },
-      { id: 9, name: 'Non-Fiction' },
-      { id: 10, name: 'Philosophy' },
-      { id: 11, name: 'Memoir' },
-      { id: 12, name: 'Adventure' },
-    ];
   }
 
   get authors() {

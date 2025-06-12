@@ -11,10 +11,13 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { Skeleton } from 'primeng/skeleton';
 import { generateStatus } from '../../Utils/status.utils';
-import { InputGroup } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { DividerModule } from 'primeng/divider';
 import { SelectModule } from 'primeng/select';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { genres } from '../../Utils/genres.utils';
+import { Genre } from '../../interfaces/genre.interface';
 
 @Component({
   selector: 'app-books-table',
@@ -30,10 +33,10 @@ import { SelectModule } from 'primeng/select';
     Skeleton,
     TagModule,
     AsyncPipe,
-    InputGroup,
     InputGroupAddonModule,
     DividerModule,
     SelectModule,
+    ReactiveFormsModule,
   ],
 })
 export class BooksTableComponent implements OnInit {
@@ -41,6 +44,9 @@ export class BooksTableComponent implements OnInit {
   viewBookVisibility = model(false);
   newBookVisibility = model(false);
   bookId = model(0);
+  searchForm!: FormGroup;
+  searchTypes!: string[];
+  genres!: Genre[];
   private bookService = inject(BookService);
   skeltonArray = Array.from({ length: 15 }).map((_, i) => `Item #${i}`);
 
@@ -69,16 +75,20 @@ export class BooksTableComponent implements OnInit {
     console.log('new book button works!');
   }
 
-  searchTypes: any;
-  selectedSearch: any;
+  onSubmit() {
+    if (this.searchForm.value.searchType === 'Isbn') {
+      this.books$ = this.bookService.getBookByIsbn(
+        this.searchForm.value.searchTerm
+      );
+    }
+  }
 
-  ngOnInit(): void {
-    this.searchTypes = [
-      { name: 'Isbn', code: 'NY' },
-      { name: 'Title', code: 'RM' },
-      { name: 'Id', code: 'LDN' },
-      { name: 'Author', code: 'IST' },
-      { name: 'Genre', code: 'PRS' },
-    ];
+  ngOnInit() {
+    this.searchForm = new FormGroup({
+      searchType: new FormControl(),
+      searchTerm: new FormControl(),
+    });
+    this.searchTypes = ['Isbn', 'Title', 'Id', 'Author', 'Genre'];
+    this.genres = genres;
   }
 }

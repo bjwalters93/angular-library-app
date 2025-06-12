@@ -25,6 +25,34 @@ export class BookService {
       .pipe(retry(1), catchError(this.handleError));
   }
 
+  getBookByTitle(title: string): Observable<Book[]> {
+    const url = `${this.apiUrl}?title=${title}`;
+    return this.http
+      .get<Book[]>(url)
+      .pipe(retry(1), catchError(this.handleError));
+  }
+
+  getBookByIsbn(isbn: string): Observable<Book[]> {
+    const url = `${this.apiUrl}?isbn=${isbn}`;
+    return this.http
+      .get<Book[]>(url)
+      .pipe(retry(1), catchError(this.handleError));
+  }
+
+  getBooksByAuthor(author: string): Observable<Book[]> {
+    const url = `${this.apiUrl}?authors=${author}`;
+    return this.http
+      .get<Book[]>(url)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  getBooksByGenre(genre: string): Observable<Book[]> {
+    const url = `${this.apiUrl}?genreIds=${genre}`;
+    return this.http
+      .get<Book[]>(url)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'An unknown error occurred!';
     if (error.error instanceof ErrorEvent) {
